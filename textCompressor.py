@@ -6,6 +6,7 @@ from collections import defaultdict
 import math
 
 enw = open("enwik4", "rb").read()
+NUMBER_OF_BITS = 16
 
 def bitgen(x):
     for c in x:
@@ -15,9 +16,8 @@ def bitgen(x):
 bg = bitgen(enw)
 lookup = defaultdict(lambda: [1,2])
 HH = 0.0
-
 try:
-    prevx = [0] * 4
+    prevx = [-1] * NUMBER_OF_BITS
     while 1:
         x = next(bg)
 
@@ -43,7 +43,7 @@ try:
         lookup[px][1] += 1
 
         prevx.append(x)
-        prevx = prevx[-4:]
+        prevx = prevx[-NUMBER_OF_BITS:]
 
 except StopIteration:
     pass
