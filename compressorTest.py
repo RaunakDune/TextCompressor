@@ -3,6 +3,8 @@
 # 7 Zipped:         3719
 
 from collections import defaultdict
+import pandas as pd
+from ggplot import *
 import math
 
 enw = open("enwik4", "rb").read()
@@ -49,8 +51,20 @@ def test(NUMBER_OF_BITS):
     except StopIteration:
         pass
 
-    print("%0.2f bytes of Entropy" % (HH/8.0))
+    return (HH/8.0)
+    #print("%0.2f bytes of Entropy" % (HH/8.0))
+
+bits = []
+perf = []
 
 for i in range(1, 32):
-    print(i, )
-    test(i)
+    bits.append(i)
+    perf.append(test(i))
+
+perf_dict = {'Lookup Bits': bits, 'Compression Ratio':perf}
+perf_df = pd.DataFrame(perf_dict)
+
+gp = ggplot(aes(x='Lookup Bits',y='Compression Ratio'), data = perf_df) + geom_point()+ geom_path()
+
+print(perf_df)
+print(gp)
