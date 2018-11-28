@@ -17,7 +17,7 @@ def bitgen(x):
 
 def test(NUMBER_OF_BITS):
     bg = bitgen(enw)
-    lookup = defaultdict(lambda: [1,2])
+    lookup = defaultdict(lambda: [0.5,1.0])
     HH = 0.0
     try:
         prevx = [-1] * NUMBER_OF_BITS

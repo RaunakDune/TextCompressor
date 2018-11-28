@@ -13,9 +13,11 @@ def bitgen(x):
         for i in range(8):
             yield int((c & (0x80>>i)) != 0)
 
-bg = bitgen(enw)
-lookup = defaultdict(lambda: [1,2])
+#https://en.wikipedia.org/wiki/Krichevsky–Trofimov_estimator
+lookup = defaultdict(lambda: [0.5,1.0])
+
 HH = 0.0
+bg = bitgen(enw)
 try:
     prevx = [-1] * NUMBER_OF_BITS
     while 1:
