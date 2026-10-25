@@ -104,3 +104,9 @@ venv.bak/
 .mypy_cache/
 
 enwik8
+__pycache__/
+*.cx
+*.out
+enwik5
+enwik6
+enwik8
